@@ -9,7 +9,7 @@ import lombok.Setter;
  * 用户信息表
  */
 public class User {
-    private int id;//编号
+    private Integer id;//编号
     private String username;//用户名
     private String loginid;//登录账号
     private String password;//密码

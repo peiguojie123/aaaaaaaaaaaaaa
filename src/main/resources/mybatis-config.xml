@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--配置全局属性-->
+    <settings>
+        <!--使用jdbc的getGeneratedKeys获取数据库自增主键值-->
+        <!--该功能 通俗的讲就是我们插入一条数据时，这个方法会给我们返回新增的自增主键值，并且如果我们传入的是实体类
+          它就给我们往这个实体类的主键ID去赋值-->
+        <setting name="useGeneratedKeys" value="true"/>
+
+        <!--使用列标签替换列别名 默认：true-->
+        <!--功能：支持别名  让我们的列支持别名-->
+        <setting name="useColumnLabel" value="true"/>
+
+        <!--开启驼峰命名转换：Table{create_time} -> Entity{createTime}-->
+        <!--数据库表中的字段create_time映射到Entity类中的createTime-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+</configuration>

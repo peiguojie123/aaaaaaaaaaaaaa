@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserDao">  <!--指定mapper对应的dao,这样mapper就会实现dao对应的方法-->
+    <select id="queryUser" resultType="com.example.demo.entity.User"><!--编写sql语句-->
+        SELECT id, username,
+        loginid, password, phonenum, picture, status, delflag
+        FROM t_sys_user
+        ORDER BY id
+        ASC
+    </select>
+    <select id="queryUserById" resultType="com.example.demo.entity.User">
+        SELECT id, username,
+        loginid, password, phonenum, picture, status, delflag
+        FROM t_sys_user
+        WHERE
+        id=#{userId}
+    </select>
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id" parameterType="com.example.demo.entity.User">
+        INSERT INTO
+        t_sys_user(username,loginid,
+        password,
+        phonenum,picture,
+        status,delflag)
+        VALUES
+        (#{username},#{loginid},
+        #{password},
+        #{phonenum},#{picture},
+        #{status},#{delflag})
+    </insert>
+    <update id="updateUser" parameterType="com.example.demo.entity.User">
+        update t_sys_user
+        <set>
+            <if test="username != null">username=#{username},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="phonenum != null">phonenum=#{phonenum},</if>
+            <if test="picture != null">picture=#{picture},</if>
+            <if test="status != null">status=#{status},</if>
+            <if test="delflag != null">delflag=#{delflag},</if>
+            <if test="loginid != null">loginid=#{loginid}</if>
+        </set>
+        where id=#{userId}
+    </update>
+    <delete id="deleteUser">
+        DELETE FROM
+        t_sys_user
+        WHERE
+        id =
+        #{userId}
+    </delete>
+</mapper>

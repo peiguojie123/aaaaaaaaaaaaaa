@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.XsXqDao">  <!--指定mapper对应的dao,这样mapper就会实现dao对应的方法-->
+    <select id="queryXsXq" resultType="com.example.demo.entity.XsXq"><!--编写sql语句-->
+        SELECT id, xslx,
+        xsdz, author, xsmc, zhgx, xsjj, wjfm, path, size
+        FROM t_xs_xq
+        ORDER BY id
+        ASC
+    </select>
+    <select id="queryXsXqById" resultType="com.example.demo.entity.XsXq">
+        SELECT id, xslx,
+        xsdz, author, xsmc, zhgx, xsjj, wjfm, path, size
+        FROM t_xs_xq
+        WHERE
+        id=#{xsxqId}
+    </select>
+    <insert id="insertXsXq" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id" parameterType="com.example.demo.entity.XsXq">
+        INSERT INTO
+        t_xs_xq(xslx,xsdz,
+        author,xsmc,
+        zhgx,xsjj,
+        wjfm,path,
+        size)
+        VALUES
+        (#{xslx},#{xsdz},
+        #{author},#{xsmc},
+        #{zhgx},#{xsjj},
+        #{wjfm},#{path},
+        #{size})
+    </insert>
+    <update id="updateXsXq" parameterType="com.example.demo.entity.XsXq">
+        update t_xs_xq
+        <set>
+            <if test="xslx != null">xslx=#{xslx},</if>
+            <if test="xsdz != null">xsdz=#{xsdz},</if>
+            <if test="author != null">author=#{author},</if>
+            <if test="xsmc != null">xsmc=#{xsmc},</if>
+            <if test="zhgx != null">zhgx=#{zhgx},</if>
+            <if test="xsjj != null">xsjj=#{xsjj},</if>
+            <if test="wjfm != null">wjfm=#{wjfm},</if>
+            <if test="path != null">path=#{path},</if>
+            <if test="size != null">size=#{size}</if>
+        </set>
+        where id=#{xsxqId}
+    </update>
+    <delete id="deleteXsXq">
+        DELETE FROM
+        t_xs_xq
+        WHERE
+        id =
+        #{xsxqId}
+    </delete>
+</mapper>
